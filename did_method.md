@@ -1,1 +1,3 @@
-1.
+#InfoWallet DID Method Specification
+
+##Abstract
