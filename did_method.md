@@ -1,3 +1,3 @@
-#InfoWallet DID Method Specification
+# InfoWallet DID Method Specification
 
-##Abstract
+## Abstract
