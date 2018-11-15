@@ -25,7 +25,7 @@ did:iwt:4EFNaYeA9hDp6F55JAB38EFtNcYEbbM9nwKr
 
 ## Operation
 DID Operation provides SmartContract of InfoWallet BlockChain in the form of REST API to access.
-/ did_create / did_read / did_update / did_delete and / did_verify to perform signature validation within SmartContract
+/ did_create /did_create_simple / did_read / did_update / did_delete and / did_verify to perform signature validation within SmartContract
 
 ### Create
 
@@ -34,9 +34,10 @@ Request DID creation. SmartContract returns true if it has not already been issu
 In addition, at the time of creation, proof must pass the signature verification in the block chain.
 The key used in the Create Proof must also be included in the Authentication.
 
-```Example Simple Request data 1
+Example Simple Request data 1
 
-simple
+```
+/did_create_simple
 {
 "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
 "publicKey": ["677AgijZXPuwmhSVMTkNXGArgMY7GA9iyhrMj8gs","3DzeDRdey97pWydGAuKGEWZKpBzjevwGB4NbyZPkkVs4RoF"],
@@ -50,7 +51,8 @@ Response data
 }
 ```
 
-```Example Request Register DID_Document
+```
+Example Request Register DID_Document
 {
 "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
   "publicKey": [{
