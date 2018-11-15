@@ -1,10 +1,8 @@
 # InfoWallet DID Method Specification
 
 ## Abstract
- InfoWallet is a credential system that operates on a block-chain ensured by each other node and does not require a central controller. 
-It is a credential system that achieves both security and convenience decentralization by DPKI and Verifiable Claim.
-
-## OverView
+ InfoWallet is a credential system on a block-chain ensured by each other node and does not require a central controller. 
+It is a credential system that achieves both security and convenience decentralization by DID and Verifiable Claim.
 In the InfoWallet system, several types of certificates are issued. Decentralized ID is used as the identifier of the certificate.
 Also, the public key required for encryption for secure exchange of certificates and personal information is also solved through DID.
 
@@ -244,14 +242,14 @@ example output data
 }
 ```
 # Security Considerations
-## Replay Attacks
-## Non-repudiation
-## Providing Traffic Security
 ## TODO
+Replay Attacks 
+Non-repudiation
+Providing Traffic Security
 
 # Privacy Considerations
 ## TODO
-## infowallet blockchain and DID Documents contain no PII(Personally-Identifiable Information).
+infowallet blockchain and DID Documents contain no PII(Personally-Identifiable Information).
 
 # References
 [1]. W3C Decentralized Identifiers (DIDs) v0.11, https://w3c-ccg.github.io/did-spec/.
