@@ -22,12 +22,18 @@ Example
 did:iwt:4EFNaYeA9hDp6F55JAB38EFtNcYEbbM9nwKr
 
 ## Operation
-InfoWallet DID Operation provides SmartContract of InfoWallet BlockChain in the form of REST API to access.
-/ did_create /did_create_simple / did_read / did_update / did_delete and / did_verify to perform signature validation within SmartContract
+The InfoWallet DID operation is provided in the form of an accessible REST API.
+Finally, DID documents are created in a block chain through a smart contract program.
+Checks the user's permissions and performs signature verification within the smart contract.
+To prevent reply attack, all signatures require a nonce,
+Nonce already used is written to the block chain.
 
 ### Create
 
-Create a DID_Document in json format and send it to / did_create uri
+Two types of create are supported.
+One can request DID creation through simple input data and signature value.
+The other is to create and send the entire DID Doucment directly.
+
 Request DID creation. SmartContract returns true if it has not already been issued to the block chain.
 In addition, at the time of creation, proof must pass the signature verification in the block chain.
 The key used in the Create Proof must also be included in the Authentication.
@@ -243,9 +249,9 @@ example output data
 ```
 # Security Considerations
 ## TODO
-Replay Attacks 
-Non-repudiation
-Providing Traffic Security
+###Replay Attacks 
+###Non-repudiation
+###Providing Traffic Security
 
 # Privacy Considerations
 ## TODO
