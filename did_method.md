@@ -37,12 +37,12 @@ The key used in the Create Proof must also be included in the Authentication.
 
 create did docuemnt with simple json inputs
 ```
-endport : /did_create_simple
-input : did , publicKey , signature
-output : result
+endpoint : /did_create_simple
+input : {did , publicKey , signature}
+output : {result}
 ```
 
-input data
+example input data 
 ```
 {
 "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
@@ -50,7 +50,7 @@ input data
 "signature" : "5nbzWuDGXyb...FPg6HmZ4JM6q=="
 }
 ```
-output data	
+example output data	
 ```
 {
 "result": true,
@@ -58,16 +58,16 @@ output data
 }
 ```
 
-request a registration with did_document included proof 
+create did document with completed did_document included proof 
 
 ```
 endport : /did_create
-input : did_document
-output : result
+input : {did_document}
+output : {result}
 ```
 
-input data
-
+example input data
+```
 {
 "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
   "publicKey": [{
@@ -81,7 +81,7 @@ input data
   }
   ],
   "authentication": [{
-    "publicKey": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1"
+    "publicKey": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1"
   } 
   ],
 }
@@ -92,8 +92,10 @@ input data
     "creator": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1",
     "signatureValue": "Ee2.....=="
 }
+```
 
-output data	
+example output data	
+```
 {
 "result": true,
 "message" : "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn created"
@@ -101,11 +103,13 @@ output data
 ```
 
 ### Read 
-Anyone can read DID_Document with did
+request DID_Document with did
 
+```
 endport : /did_read
-input : did
-output : did_document
+input : {did}
+output : {did_document}
+```
 
 input
 {
