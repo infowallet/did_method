@@ -35,7 +35,7 @@ In addition, at the time of creation, proof must pass the signature verification
 The key used in the Create Proof must also be included in the Authentication.
 
 
-create did docuemnt with simple json inputs
+#### create did docuemnt with simple json inputs
 ```
 endpoint : /did_create_simple
 input : {did , publicKey , signature}
