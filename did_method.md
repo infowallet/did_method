@@ -108,7 +108,7 @@ example output data
 
 ### Read 
 
-#### request DID_Document with did
+#### request did document through did. The result is that did document is returned.
 ```
 endport : /did_read
 input : { did }
@@ -144,7 +144,7 @@ example output data
 ```
 
 ### Update
-#### To update did_document user must new docuemnt with proof with signature
+#### To update did_document , input has new docuemnt with proof with signature
 included nonce
 
 ```
