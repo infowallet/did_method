@@ -249,9 +249,9 @@ example output data
 ```
 # Security Considerations
 ## TODO
-###Replay Attacks 
-###Non-repudiation
-###Providing Traffic Security
+### Replay Attacks 
+### Non-repudiation
+### Providing Traffic Security
 
 # Privacy Considerations
 ## TODO
