@@ -140,8 +140,8 @@ example output data
 ```
 
 ### Update
-
-#### request to update new did_document.
+#### To update did_document user must new docuemnt with proof with signature
+included nonce
 
 ```
 endport : /did_update
