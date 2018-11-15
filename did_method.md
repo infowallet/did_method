@@ -34,7 +34,23 @@ Request DID creation. SmartContract returns true if it has not already been issu
 In addition, at the time of creation, proof must pass the signature verification in the block chain.
 The key used in the Create Proof must also be included in the Authentication.
 
-```sample input data
+```Example Simple Request data 1
+
+simple
+{
+"id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
+"publicKey": ["677AgijZXPuwmhSVMTkNXGArgMY7GA9iyhrMj8gs","3DzeDRdey97pWydGAuKGEWZKpBzjevwGB4NbyZPkkVs4RoF"],
+"signature" : "5nbzWuDGXyb...FPg6HmZ4JM6q=="
+}
+
+Response data	
+{
+"result": true,
+"message" : "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn created"
+}
+```
+
+```Example Request Register DID_Document
 {
 "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
   "publicKey": [{
@@ -55,12 +71,53 @@ The key used in the Create Proof must also be included in the Authentication.
 "proof": {
     "type": " EcdsaKoblitzSignature2016",
     "created": "2018-08-02T16:01:10Z",
+	"nonce" : "dQew214232".
     "creator": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1",
     "signatureValue": "Ee2.....=="
 }
+
+Response data	
+{
+"result": true,
+"message" : "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn created"
+}
 ```
 
+### Read 
+Anyone can read DID_Document with did
+
+simple
+{
+"id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn"
+}
+
+Response Data
+{
+"id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
+  "publicKey": [{
+    "id": "did: iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1",
+    "type": "EcdsaKoblitzSignature2016",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }, {
+    "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-2",
+    "type": "EcdsaKoblitzSignature2016",
+     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }
+  ],
+  "authentication": [{
+    "publicKey": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1"
+  } 
+  ]
+}
+
 ### Update
+To Update DID_Document, First user read DID_Document from /did_read 
+and modify document and make proof.
+
+### De;ete
+To Delete DID_Document, First user read DID_Document from /did_read 
+and modify document and make proof.
+
 
 
 # References
