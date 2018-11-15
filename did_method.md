@@ -37,8 +37,10 @@ The key used in the Create Proof must also be included in the Authentication.
 Example
 Simple Request data 1
 
-```
-/did_create_simple
+endport : /did_create_simple
+input : did , publicKey , signature
+output : result
+
 {
 "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
 "publicKey": ["677AgijZXPuwmhSVMTkNXGArgMY7GA9iyhrMj8gs","3DzeDRdey97pWydGAuKGEWZKpBzjevwGB4NbyZPkkVs4RoF"],
@@ -53,7 +55,10 @@ Response data
 ```
 
 ```
-Example Request Register DID_Document
+endport : /did_create
+input : did_document
+output : result
+
 {
 "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
   "publicKey": [{
@@ -89,12 +94,16 @@ Response data
 ### Read 
 Anyone can read DID_Document with did
 
-simple
+endport : /did_read
+input : did
+output : did_document
+
+input
 {
 "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn"
 }
 
-Response Data
+output
 {
 "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
   "publicKey": [{
@@ -114,12 +123,16 @@ Response Data
 }
 
 ### Update
-To Update DID_Document, First user read DID_Document from /did_read 
-and modify document and make proof.
 
-### De;ete
-To Delete DID_Document, First user read DID_Document from /did_read 
-and modify document and make proof.
+endport : /did_update
+input : did_document (included proof)
+output : did_document
+
+### Delete
+
+endport : /did_delete
+input : did,proof
+output : did_document
 
 
 
