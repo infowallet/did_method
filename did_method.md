@@ -34,7 +34,7 @@ Request DID creation. SmartContract returns true if it has not already been issu
 In addition, at the time of creation, proof must pass the signature verification in the block chain.
 The key used in the Create Proof must also be included in the Authentication.
 
-sample input data
+```sample input data
 {
 "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
   "publicKey": [{
@@ -58,7 +58,7 @@ sample input data
     "creator": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1",
     "signatureValue": "Ee2.....=="
 }
-
+```
 
 ### 
 
