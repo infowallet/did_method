@@ -243,7 +243,15 @@ example output data
 "message" : "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn deleted"
 }
 ```
+# Security Considerations
+## Replay Attacks
+## Non-repudiation
+## Providing Traffic Security
+## TODO
 
+# Privacy Considerations
+## TODO
+## infowallet blockchain and DID Documents contain no PII(Personally-Identifiable Information).
 
 # References
 [1]. W3C Decentralized Identifiers (DIDs) v0.11, https://w3c-ccg.github.io/did-spec/.
