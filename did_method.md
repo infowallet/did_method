@@ -104,19 +104,21 @@ example output data
 
 ### Read 
 request DID_Document with did
-
 ```
 endport : /did_read
-input : {did}
-output : {did_document}
+input : { did }
+output : { did_document }
 ```
 
-input
+```
+example input data
 {
 "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn"
 }
+```
 
-output
+```
+example output data
 {
 "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
   "publicKey": [{
@@ -134,20 +136,113 @@ output
   } 
   ]
 }
+```
 
 ### Update
 
+request to update new did_document.
+
+```
 endport : /did_update
 input : did_document (included proof)
 output : did_document
+```
+
+example input data
+
+```
+{
+"id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
+  "publicKey": [{
+    "id": "did: iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1",
+    "type": "EcdsaKoblitzSignature2016",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }, {
+    "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-2",
+    "type": "EcdsaKoblitzSignature2016",
+     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  },
+  {
+    "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-2",
+    "type": "EcdsaKoblitzSignature2016",
+     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }
+  ],
+  "authentication": [{
+    "publicKey": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1"
+  } 
+  ]
+}
+
+"proof": {
+    "type": " EcdsaKoblitzSignature2016",
+    "created": "2018-08-02T16:01:10Z",
+	"nonce" : "7asd98sd7".
+    "creator": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1",
+    "signatureValue": a2.....=="
+}
+```
+
+example output data
+
+```
+{
+"id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
+  "publicKey": [{
+    "id": "did: iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1",
+    "type": "EcdsaKoblitzSignature2016",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }, {
+    "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-2",
+    "type": "EcdsaKoblitzSignature2016",
+     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  },
+  {
+    "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-2",
+    "type": "EcdsaKoblitzSignature2016",
+     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }
+  ],
+  "authentication": [{
+    "publicKey": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1"
+  } 
+  ]
+}
+```
 
 ### Delete
-
+Request to delete did_document with proof that must has nonce
+```
 endport : /did_delete
 input : did,proof
 output : did_document
+```
 
+example input data
+
+```
+{
+"id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn"  
+}
+
+"proof": {
+    "type": " EcdsaKoblitzSignature2016",
+    "created": "2018-08-02T16:01:10Z",
+	"nonce" : "986787sd".
+    "creator": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1",
+    "signatureValue": d.....=="
+}
+```
+
+example output data	
+
+```
+{
+"result": true,
+"message" : "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn deleted"
+}
+```
 
 
 # References
-## [1]. W3C Decentralized Identifiers (DIDs) v0.11, https://w3c-ccg.github.io/did-spec/.
+[1]. W3C Decentralized Identifiers (DIDs) v0.11, https://w3c-ccg.github.io/did-spec/.
