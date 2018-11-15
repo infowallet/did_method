@@ -58,7 +58,7 @@ example output data
 }
 ```
 
-create did document with completed did_document included proof 
+#### create did document with completed did_document included proof 
 
 ```
 endport : /did_create
@@ -103,7 +103,8 @@ example output data
 ```
 
 ### Read 
-request DID_Document with did
+
+#### request DID_Document with did
 ```
 endport : /did_read
 input : { did }
@@ -140,7 +141,7 @@ example output data
 
 ### Update
 
-request to update new did_document.
+#### request to update new did_document.
 
 ```
 endport : /did_update
@@ -211,7 +212,7 @@ example output data
 ```
 
 ### Delete
-Request to delete did_document with proof that must has nonce
+#### Request to delete did_document with proof that must has nonce
 ```
 endport : /did_delete
 input : did,proof
