@@ -38,8 +38,9 @@ You can request DID generation through simple input data and signature values.
 The other is to create and send the entire DID Doucment directly.
 SmartContract returns true if it has not been issued to a block chain and if the signature verification succeeds.
 
-#### To create a simple type of document,  the input value must be as following.
+To create a simple type of document,  the input value must be as following.
 it returns "true" if successfully created.
+
 ```
 endpoint : /did_create_simple
 input : {did , publicKey , signature}
@@ -65,8 +66,8 @@ example output data
 }
 ```
 
-#### To create a full type of document, the input value must be as following.
-it returns "true" if successfully created.
+To create a full type of document, the input value must be as following.
+input has full docuemnt of did with signature it returns "true" if successfully created.
 ```
 endport : /did_create
 input : {did_document}
@@ -114,7 +115,7 @@ example output data
 
 ### Read 
 
-#### To read did document for some did, the input value must be as following.
+To read did document for some did, the input value must be as following.
 it returns a did docuemnt for it. If it is found.
 
 ```
@@ -155,7 +156,7 @@ example output data
 ```
 
 ### Update
-#### To update did_document ,the input value must be as following.
+To update did_document ,the input value must be as following.
 input has a new docuemnt with signature including nonce.
 it returns updated did docuemnt. if successfully updated.
 
