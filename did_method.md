@@ -1,11 +1,15 @@
 # InfoWallet DID Method Specification
 
 ## Abstract
- InfoWallet is a credential system on a block-chain ensured by each other node and does not require a central controller. 
-It is a credential system that achieves both security and convenience decentralization by DID and Verifiable Claim.
-In the InfoWallet system, several types of certificates are issued. Decentralized ID is used as the identifier of the certificate.
-Also, the public key required for encryption for secure exchange of certificates and personal information is also solved through DID.
 
+ InfoWallet is a decentralized network system for Self-Sovereign identify and Verifiable Claim. 
+It can replace a legay cencdentized credential system that with trusted blockchain node.
+In the InfoWallet system, several types of certificates are issued. DID(Decentralized Identifiers) is used as the unique identifier of the certificate.
+Also DID allows to obtain public key information for secure exchange of information between users.
+
+## Status of This Document
+
+This document is not a W3C Standard. It is a draft document and will be updated.
 
 ## InfoWallet DID Method Name
 
@@ -22,24 +26,20 @@ Example
 did:iwt:4EFNaYeA9hDp6F55JAB38EFtNcYEbbM9nwKr
 
 ## Operation
-The InfoWallet DID operation is provided in the form of an accessible REST API.
-Finally, DID documents are created in a block chain through a smart contract program.
-Checks the user's permissions and performs signature verification within the smart contract.
-To prevent reply attack, all signatures require a nonce,
-Nonce already used is written to the block chain.
+InfoWallet DID (CRUD) operations are provided in RESTful API format.
+DID documents are generated in the block chain by smart contract code.
+It checks the authoriy and performs signature verification within the smart contract.
+To prevent replay attack, all signatures require a nonce,Nonce already used is written to the block chain.
 
 ### Create
 
-Two types of create are supported.
-One can request DID creation through simple input data and signature value.
+Two types of authoring are supported.
+You can request DID generation through simple input data and signature values.
 The other is to create and send the entire DID Doucment directly.
+SmartContract returns true if it has not been issued to a block chain and if the signature verification succeeds.
 
-Request DID creation. SmartContract returns true if it has not already been issued to the block chain.
-In addition, at the time of creation, proof must pass the signature verification in the block chain.
-The key used in the Create Proof must also be included in the Authentication.
-
-
-#### create did docuemnt with simple json inputs
+#### To create a simple type of document,  the input value must be as following.
+it returns "true" if successfully created.
 ```
 endpoint : /did_create_simple
 input : {did , publicKey , signature}
@@ -48,10 +48,13 @@ output : {result}
 
 example input data 
 ```
-{
-"id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
-"publicKey": ["677AgijZXPuwmhSVMTkNXGArgMY7GA9iyhrMj8gs","3DzeDRdey97pWydGAuKGEWZKpBzjevwGB4NbyZPkkVs4RoF"],
-"signature" : "5nbzWuDGXyb...FPg6HmZ4JM6q=="
+{  
+   "id":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
+   "publicKey":[  
+      "677AgijZXPuwmhSVMTkNXGArgMY7GA9iyhrMj8gs",
+      "3DzeDRdey97pWydGAuKGEWZKpBzjevwGB4NbyZPkkVs4RoF"
+   ],
+   "signature":"5nbzWuDGXyb...FPg6HmZ4JM6q=="
 }
 ```
 example output data	
@@ -62,8 +65,8 @@ example output data
 }
 ```
 
-#### create did document with completed did_document included proof 
-
+#### To create a full type of document, the input value must be as following.
+it returns "true" if successfully created.
 ```
 endport : /did_create
 input : {did_document}
@@ -72,29 +75,32 @@ output : {result}
 
 example input data
 ```
-{
-"id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
-  "publicKey": [{
-    "id": "did: iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1",
-    "type": "EcdsaKoblitzSignature2016",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-  }, {
-    "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-2",
-    "type": "EcdsaKoblitzSignature2016",
-     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-  }
-  ],
-  "authentication": [{
-    "publicKey": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1"
-  } 
-  ],
-}
-"proof": {
-    "type": " EcdsaKoblitzSignature2016",
-    "created": "2018-08-02T16:01:10Z",
-	"nonce" : "dQew214232".
-    "creator": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1",
-    "signatureValue": "Ee2.....=="
+{  
+   "id":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
+   "publicKey":[  
+      {  
+         "id":"did: iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1",
+         "type":"EcdsaKoblitzSignature2016",
+         "publicKeyPem":"-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+      },
+      {  
+         "id":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-2",
+         "type":"EcdsaKoblitzSignature2016",
+         "publicKeyPem":"-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+      }
+   ],
+   "authentication":[  
+      {  
+         "publicKey":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1"
+      }
+   ],
+   "proof":{  
+      "type":" EcdsaKoblitzSignature2016",
+      "created":"2018-08-02T16:01:10Z",
+      "nonce":"dQew214232",
+      "creator":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1",
+      "signatureValue":"Ee2.....=="
+   }
 }
 ```
 
@@ -108,7 +114,9 @@ example output data
 
 ### Read 
 
-#### request did document through did. The result is that did document is returned.
+#### To read did document for some did, the input value must be as following.
+it returns a did docuemnt for it. If it is found.
+
 ```
 endport : /did_read
 input : { did }
@@ -124,28 +132,32 @@ example input data
 
 ```
 example output data
-{
-"id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
-  "publicKey": [{
-    "id": "did: iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1",
-    "type": "EcdsaKoblitzSignature2016",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-  }, {
-    "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-2",
-    "type": "EcdsaKoblitzSignature2016",
-     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-  }
-  ],
-  "authentication": [{
-    "publicKey": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1"
-  } 
-  ]
+{  
+   "id":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
+   "publicKey":[  
+      {  
+         "id":"did: iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1",
+         "type":"EcdsaKoblitzSignature2016",
+         "publicKeyPem":"-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+      },
+      {  
+         "id":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-2",
+         "type":"EcdsaKoblitzSignature2016",
+         "publicKeyPem":"-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+      }
+   ],
+   "authentication":[  
+      {  
+         "publicKey":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1"
+      }
+   ]
 }
 ```
 
 ### Update
-#### To update did_document , input has new docuemnt with proof with signature
-included nonce
+#### To update did_document ,the input value must be as following.
+input has a new docuemnt with signature including nonce.
+it returns updated did docuemnt. if successfully updated.
 
 ```
 endport : /did_update
@@ -156,67 +168,74 @@ output : did_document
 example input data
 
 ```
-{
-"id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
-  "publicKey": [{
-    "id": "did: iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1",
-    "type": "EcdsaKoblitzSignature2016",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-  }, {
-    "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-2",
-    "type": "EcdsaKoblitzSignature2016",
-     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-  },
-  {
-    "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-2",
-    "type": "EcdsaKoblitzSignature2016",
-     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-  }
-  ],
-  "authentication": [{
-    "publicKey": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1"
-  } 
-  ]
-}
-
-"proof": {
-    "type": " EcdsaKoblitzSignature2016",
-    "created": "2018-08-02T16:01:10Z",
-	"nonce" : "7asd98sd7".
-    "creator": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1",
-    "signatureValue": a2.....=="
+{  
+   "id":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
+   "publicKey":[  
+      {  
+         "id":"did: iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1",
+         "type":"EcdsaKoblitzSignature2016",
+         "publicKeyPem":"-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+      },
+      {  
+         "id":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-2",
+         "type":"EcdsaKoblitzSignature2016",
+         "publicKeyPem":"-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+      },
+      {  
+         "id":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-3",
+         "type":"EcdsaKoblitzSignature2016",
+         "publicKeyPem":"-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+      }
+   ],
+   "authentication":[  
+      {  
+         "publicKey":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1"
+      }
+   ],
+   "proof":{  
+      "type":" EcdsaKoblitzSignature2016",
+      "created":"2018-08-02T16:01:10Z",
+      "nonce":"dQew214232",
+      "creator":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1",
+      "signatureValue":"Ee2.....=="
+   }
 }
 ```
 
 example output data
 
 ```
-{
-"id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
-  "publicKey": [{
-    "id": "did: iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1",
-    "type": "EcdsaKoblitzSignature2016",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-  }, {
-    "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-2",
-    "type": "EcdsaKoblitzSignature2016",
-     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-  },
-  {
-    "id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-2",
-    "type": "EcdsaKoblitzSignature2016",
-     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-  }
-  ],
-  "authentication": [{
-    "publicKey": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1"
-  } 
-  ]
+{  
+   "id":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
+   "publicKey":[  
+      {  
+         "id":"did: iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn #keys-1",
+         "type":"EcdsaKoblitzSignature2016",
+         "publicKeyPem":"-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+      },
+      {  
+         "id":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-2",
+         "type":"EcdsaKoblitzSignature2016",
+         "publicKeyPem":"-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+      },
+      {  
+         "id":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-3",
+         "type":"EcdsaKoblitzSignature2016",
+         "publicKeyPem":"-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+      }
+   ],
+   "authentication":[  
+      {  
+         "publicKey":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1"
+      }
+   ]
 }
 ```
 
 ### Delete
-#### Request to delete did_document with proof that must has nonce
+To delete did_document ,the input value must be as following.
+input has a signature including with nonce.
+it returns "true". if successfully delete.
 ```
 endport : /did_delete
 input : did,proof
@@ -226,16 +245,15 @@ output : did_document
 example input data
 
 ```
-{
-"id": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn"  
-}
-
-"proof": {
-    "type": " EcdsaKoblitzSignature2016",
-    "created": "2018-08-02T16:01:10Z",
-	"nonce" : "986787sd".
-    "creator": "did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1",
-    "signatureValue": d.....=="
+{  
+   "id":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn",
+   "proof":{  
+      "type":" EcdsaKoblitzSignature2016",
+      "created":"2018-08-02T16:01:10Z",
+      "nonce":"d235qsd",
+      "creator":"did:iwt:7V2FnzCykod7aK9eMBEtKEdyfxSwn#keys-1",
+      "signatureValue":"d976...=="
+   }
 }
 ```
 
