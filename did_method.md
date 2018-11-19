@@ -2,8 +2,8 @@
 
 ## Abstract
 
- InfoWallet is a decentralized network system for Self-Sovereign identify and Verifiable Claim. 
-It can replace a legay cencdentized credential system that with trusted blockchain node.
+ InfoWallet is a decentralized network system for Self-Sovereign identify and Verifiable Claims.
+It can replace a legacy centralized credential system that with trusted blockchain node.
 In the InfoWallet system, several types of certificates are issued. DID(Decentralized Identifiers) is used as the unique identifier of the certificate.
 Also DID allows to obtain public key information for secure exchange of information between users.
 
@@ -28,18 +28,18 @@ did:iwt:4EFNaYeA9hDp6F55JAB38EFtNcYEbbM9nwKr
 ## Operation
 InfoWallet DID (CRUD) operations are provided in RESTful API format.
 DID documents are generated in the block chain by smart contract code.
-It checks the authoriy and performs signature verification within the smart contract.
-To prevent replay attack, all signatures require a nonce,Nonce already used is written to the block chain.
+it checks the authority and performs signature verification within the smart contract.
+To prevent replay attack, all signatures require a nonce,which nonce already used is written to the block chain.
 
 ### Create
 
 Two types of authoring are supported.
-You can request DID generation through simple input data and signature values.
+You can request  a DID generation through simple input data and signature values.
 The other is to create and send the entire DID Doucment directly.
 SmartContract returns true if it has not been issued to a block chain and if the signature verification succeeds.
 
-To create a simple type of document,  the input value must be as following.
-it returns "true" if successfully created.
+To create a simple type of document, the input value must be as following.
+It returns "true", if successfully created.
 
 ```
 endpoint : /did_create_simple
@@ -67,7 +67,8 @@ example output data
 ```
 
 To create a full type of document, the input value must be as following.
-input has full docuemnt of did with signature it returns "true" if successfully created.
+The input has full docuemnt of did with signature.
+It returns "true", if successfully created.
 ```
 endport : /did_create
 input : {did_document}
@@ -116,7 +117,7 @@ example output data
 ### Read 
 
 To read did document for some did, the input value must be as following.
-it returns a did docuemnt for it. If it is found.
+It returns a did docuement for it, if it is found.
 
 ```
 endport : /did_read
@@ -157,8 +158,8 @@ example output data
 
 ### Update
 To update did_document ,the input value must be as following.
-input has a new docuemnt with signature including nonce.
-it returns updated did docuemnt. if successfully updated.
+The input has a new document with signature including a nonce.
+It returns updated a did docuemnt, if successfully updated.
 
 ```
 endport : /did_update
@@ -235,8 +236,8 @@ example output data
 
 ### Delete
 To delete did_document ,the input value must be as following.
-input has a signature including with nonce.
-it returns "true". if successfully delete.
+The input has a signature including with nonce.
+It returns "true". if successfully delete.
 ```
 endport : /did_delete
 input : did,proof
