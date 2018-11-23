@@ -2,7 +2,7 @@
 
 ## Abstract
 
- InfoWallet is a decentralized network system for Self-Sovereign identify and Verifiable Claims.
+ InfoWallet is a decentralized network system for  Self-Sovereign identity and Verifiable Claims.
 It can replace a legacy centralized credential system that with trusted blockchain node.
 In the InfoWallet system, several types of certificates are issued. DID(Decentralized Identifiers) is used as the unique identifier of the certificate.
 Also DID allows to obtain public key information for secure exchange of information between users.
@@ -13,7 +13,7 @@ This document is not a W3C Standard. It is a draft document and will be updated.
 
 ## InfoWallet DID Method Name
 
-The namestring that shall identify this DID method is: iwt
+The name string that shall identify this DID method is: iwt
 
 
 ## InfoWallet DID Format
@@ -29,7 +29,7 @@ did:iwt:4EFNaYeA9hDp6F55JAB38EFtNcYEbbM9nwKr
 InfoWallet DID (CRUD) operations are provided in RESTful API format.
 DID documents are generated in the block chain by smart contract code.
 it checks the authority and performs signature verification within the smart contract.
-To prevent replay attack, all signatures require a nonce,which nonce already used is written to the block chain.
+To prevent replay attacks, all signatures require a nonce, which is stored in the blockchain.
 
 ### Create
 
