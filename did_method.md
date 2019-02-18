@@ -270,6 +270,9 @@ example output data
 # Security Considerations
 ## TODO
 ### Replay Attacks 
+To prevent a replay attact a did proof has to have random nonce value. 
+In decentralized network or smart contract code could not generate reliable random number.(oracle problem)
+To solve this issue , we store the nonce value that was used , and check if the value already used .
 ### Non-repudiation
 ### Providing Traffic Security
 
